@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Secure Access</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .step { display: none; }
+        .step.active { display: block; }
+        #qr-container { margin-top: 1rem; }
+        #qr-code { width: 150px; height: 150px; background: white; padding: 10px; border-radius: 10px; margin: 0 auto; }
+        .otp-input { letter-spacing: 0.5rem; text-align: center; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="logo">📟</div>
+        <h1>Smart Wall</h1>
+        
+        <!-- OTP STEP -->
+        <div id="otp-step" class="step active">
+            <p class="subtitle"><span id="user-display">Loading...</span></p>
+            
+            <!-- WARNING MESSAGE FOR FIRST TIME USER -->
+            <div id="first-time-warning" class="warning-card" style="display: none;">
+                <span class="warning-icon">⚠️</span>
+                <div class="warning-text">
+                    <strong>[최초 OTP 등록안내]</strong><br>
+                    보안을 위해 QR 코드는 최초 1회만 표시됩니다.<br>
+                    반드시 Authenticator 앱에 등록 후 진행하십시오.<br>
+                    분실 시 시스템 잠금 해제가 불가능합니다.
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="otp-field" class="otp-input" maxlength="6" placeholder="000000" autocomplete="off">
+            </div>
+            <button class="unlock-btn" onclick="verifyLogin()">Unlock System</button>
+            
+            <div id="qr-container" style="display: none;">
+                <p class="subtitle" style="margin-bottom: 0.5rem; font-size: 0.8rem;">Scan this with Google Authenticator</p>
+                <img id="qr-code" src="" alt="QR Code">
+            </div>
+            <button id="show-qr-btn" class="unlock-btn" style="background: none; color: var(--primary); font-size: 0.8rem; padding: 0.5rem;" onclick="toggleQR()">Show Setup QR Code</button>
+        </div>
+
+        <div id="status" class="status-msg">Incorrect credentials.</div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

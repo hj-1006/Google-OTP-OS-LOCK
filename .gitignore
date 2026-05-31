@@ -1,0 +1,11 @@
+# 💡 Electron 빌드 결과물 및 패키지 제외 (필수!)
+node_modules/
+dist/
+win-unpacked/
+*.exe
+*.yaml
+*.yml
+
+# OS 임시 파일 및 캐시
+.DS_Store
+Thumbs.db

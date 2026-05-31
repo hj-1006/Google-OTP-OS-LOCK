@@ -1,0 +1,42 @@
+{
+  "name": "os-login-kiosk",
+  "version": "1.0.0",
+  "description": "Secure Kiosk Mode Login for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "monitor": "node monitor.js",
+    "reset": "node reset.js",
+    "dist": "electron-builder --win",
+    "package": "electron-packager . \"Smart Wall\" --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "dependencies": {
+    "node-global-key-listener": "^0.1.1",
+    "qrcode": "^1.5.4",
+    "speakeasy": "^2.0.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
+  },
+  "build": {
+    "appId": "com.securekiosk.smartwall",
+    "productName": "Smart Wall",
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "compression": "maximum",
+    "files": [
+      "**/*",
+      "!dist/**/*",
+      "!reset.js",
+      "!setup_startup.bat",
+      "!*.md",
+      "!*.zip"
+    ]
+  }
+}
